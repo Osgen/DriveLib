@@ -16,7 +16,7 @@ CREATE TABLE Alumnos(
 
 DROP TABLE IF EXISTS Docente;
 
-CREATE TABLE Docente(
+CREATE TABLE Docentes(
     IdDocente int NOT NULL AUTO_INCREMENT,
     NombreDocente varchar(40) NOT NULL,
     ApellidoDocente varchar(40) NOT NULL,
@@ -39,7 +39,6 @@ DROP TABLE IF EXISTS Comentarios;
 CREATE TABLE Comentarios(
     IdComentario int NOT NULL AUTO_INCREMENT,
     IdAlumno int NOT NULL,
-    IdRepositorio int NOT NULL,
     IdPublicacion int NOT NULL,
     FechaPublicacion date NOT NULL,
     PRIMARY KEY (IdComentario),
@@ -62,10 +61,13 @@ CREATE TABLE Publicaciones(
     IdPublicacion int NOT NULL AUTO_INCREMENT,
     IdAutor int NOT NULL,
     IdEtiqueta int NOT NULL,
+    IdDocente int NOT NULL,
+    Vistas int NOT NULL,
     Contenido varchar(255) NOT NULL,
     FechaPublicacion date NOT NULL,
     PRIMARY KEY (IdPublicacion),
     FOREIGN KEY (IdAutor) REFERENCES Autores(IdAutor),
     FOREIGN KEY (IdEtiqueta) REFERENCES Etiquetas(IdEtiqueta),
+    FOREIGN KEY (IdDocente) REFERENCES Docentes(IdDocente)
 );
 
