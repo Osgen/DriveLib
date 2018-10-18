@@ -9,6 +9,7 @@ CREATE TABLE Alumnos(
     ApellidoAlumno varchar(40) NOT NULL,
     NombreAlumno varchar(40) NOT NULL,
     EmailAlumno varchar(50),
+    ContrasenaAlumno varchar(40) NOT NULL,
     NumeroTelefonoAlumno int,
     PRIMARY KEY(IdAlumno)
 );
@@ -19,6 +20,8 @@ CREATE TABLE Docente(
     IdDocente int NOT NULL AUTO_INCREMENT,
     NombreDocente varchar(40) NOT NULL,
     ApellidoDocente varchar(40) NOT NULL,
+    EmailDocente varchar(50) NOT NULL,
+    ContrasenaDocente varchar(40) NOT NULL,
     Administrador bit NOT NULL,
     PRIMARY KEY (IdDocente)
 );
