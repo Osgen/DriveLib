@@ -40,11 +40,11 @@ CREATE TABLE Comentarios(
     IdComentario int NOT NULL AUTO_INCREMENT,
     IdAlumno int NOT NULL,
     IdRepositorio int NOT NULL,
-    Contenido varchar(255) NOT NULL,
+    IdPublicacion int NOT NULL,
     FechaPublicacion date NOT NULL,
     PRIMARY KEY (IdComentario),
     FOREIGN KEY (IdAlumno) REFERENCES Alumnos(IdAlumno),
-    FOREIGN KEY (IdRepositorio) REFERENCES Repositorios(IdRepositorio)
+    FOREIGN KEY (IdPublicacion) REFERENCES Publicaciones(IdPublicacion)
 );
 
 DROP TABLE IF EXISTS Etiquetas;
@@ -56,20 +56,16 @@ CREATE TABLE Etiquetas(
     PRIMARY KEY (IdEtiqueta)
 );
 
-DROP TABLE IF EXISTS Contenidos;
---Crear tabla contenidos
-
 DROP TABLE IF EXISTS Publicaciones;
 
 CREATE TABLE Publicaciones(
     IdPublicacion int NOT NULL AUTO_INCREMENT,
-    IdContenido int NOT NULL,
     IdAutor int NOT NULL,
     IdEtiqueta int NOT NULL,
+    Contenido varchar(255) NOT NULL,
     FechaPublicacion date NOT NULL,
     PRIMARY KEY (IdPublicacion),
     FOREIGN KEY (IdAutor) REFERENCES Autores(IdAutor),
     FOREIGN KEY (IdEtiqueta) REFERENCES Etiquetas(IdEtiqueta),
-    FOREIGN KEY (IdContenido) REFERENCES Contenidos(IdContenido)
 );
 
