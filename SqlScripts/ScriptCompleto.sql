@@ -2,7 +2,7 @@ CREATE DATABASE DriveLib;
 
 USE DriveLib;
 
-DROP TABLE Alumnos;
+DROP TABLE IF EXISTS Alumnos;
 
 CREATE TABLE Alumnos(
     IdAlumno int NOT NULL AUTO_INCREMENT,
@@ -14,7 +14,7 @@ CREATE TABLE Alumnos(
     PRIMARY KEY(IdAlumno)
 );
 
-DROP TABLE Docente;
+DROP TABLE IF EXISTS Docente;
 
 CREATE TABLE Docente(
     IdDocente int NOT NULL AUTO_INCREMENT,
@@ -26,7 +26,7 @@ CREATE TABLE Docente(
     PRIMARY KEY (IdDocente)
 );
 
-DROP TABLE Autores;
+DROP TABLE IF EXISTS Autores;
 
 CREATE TABLE Autores (
     IdAutor int NOT NULL AUTO_INCREMENT,
@@ -34,7 +34,7 @@ CREATE TABLE Autores (
     PRIMARY KEY (IdAutor)
 );
 
-DROP TABLE Comentarios;
+DROP TABLE IF EXISTS Comentarios;
 
 CREATE TABLE Comentarios(
     IdComentario int NOT NULL AUTO_INCREMENT,
@@ -47,7 +47,7 @@ CREATE TABLE Comentarios(
     FOREIGN KEY (IdRepositorio) REFERENCES Repositorios(IdRepositorio)
 );
 
-DROP TABLE Etiquetas;
+DROP TABLE IF EXISTS Etiquetas;
 
 CREATE TABLE Etiquetas(
     IdEtiqueta int NOT NULL AUTO_INCREMENT,
@@ -56,10 +56,10 @@ CREATE TABLE Etiquetas(
     PRIMARY KEY (IdEtiqueta)
 );
 
-DROP TABLE Contenidos;
+DROP TABLE IF EXISTS Contenidos;
 --Crear tabla contenidos
 
-DROP TABLE Publicaciones;
+DROP TABLE IF EXISTS Publicaciones;
 
 CREATE TABLE Publicaciones(
     IdPublicacion int NOT NULL AUTO_INCREMENT,
