@@ -59,7 +59,7 @@ CREATE TABLE Publicaciones(
     FOREIGN KEY (IdDocente) REFERENCES Docentes(IdDocente)
 );
 
-
+--Probrando
 DROP TABLE IF EXISTS Comentarios;
 
 CREATE TABLE Comentarios(
