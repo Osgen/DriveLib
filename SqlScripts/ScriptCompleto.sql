@@ -52,11 +52,20 @@ DROP TABLE IF EXISTS Etiquetas;
 
 CREATE TABLE Etiquetas(
     IdEtiqueta int NOT NULL AUTO_INCREMENT,
-    IdPublicacion int NOT NULL,
     NombreEtiqueta varchar(40) NOT NULL,
     Descripcion varchar(255) NOT NULL,
-    PRIMARY KEY (IdEtiqueta),
-    FOREIGN KEY (IdPublicacion) REFERENCES AutPublicacionesores(IdPublicacion)
+    PRIMARY KEY (IdEtiqueta)
+);
+
+DROP TABLE IF EXISTS Clasificaciones;
+
+CREATE TABLE Clasificaciones(
+    IdClasificacion int NOT NULL AUTO_INCREMENT;
+    IdEtiqueta int NOT NULL,
+    IdPublicacion int NOT NULL,
+    PRIMARY KEY (IdClasificacion),
+    FOREIGN KEY (IdPublicacion) REFERENCES Publicaciones(IdPublicacion),
+    FOREIGN KEY (IdEtiqueta) REFERENCES Etiquetas(IdEtiqueta)
 );
 
 DROP TABLE IF EXISTS Comentarios;
