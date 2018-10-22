@@ -8,7 +8,7 @@ CREATE TABLE Alumnos(
     IdAlumno int NOT NULL AUTO_INCREMENT,
     ApellidoAlumno varchar(40) NOT NULL,
     NombreAlumno varchar(40) NOT NULL,
-    EmailAlumno varchar(50),
+    EmailAlumno varchar(50) NOT NULL,
     ContrasenaAlumno varchar(40) NOT NULL,
     NumeroTelefonoAlumno int,
     PRIMARY KEY(IdAlumno)
@@ -34,18 +34,6 @@ CREATE TABLE Autores (
     PRIMARY KEY (IdAutor)
 );
 
-DROP TABLE IF EXISTS Comentarios;
-
-CREATE TABLE Comentarios(
-    IdComentario int NOT NULL AUTO_INCREMENT,
-    IdAlumno int NOT NULL,
-    IdPublicacion int NOT NULL,
-    FechaPublicacion date NOT NULL,
-    PRIMARY KEY (IdComentario),
-    FOREIGN KEY (IdAlumno) REFERENCES Alumnos(IdAlumno),
-    FOREIGN KEY (IdPublicacion) REFERENCES Publicaciones(IdPublicacion)
-);
-
 DROP TABLE IF EXISTS Etiquetas;
 
 CREATE TABLE Etiquetas(
@@ -69,5 +57,18 @@ CREATE TABLE Publicaciones(
     FOREIGN KEY (IdAutor) REFERENCES Autores(IdAutor),
     FOREIGN KEY (IdEtiqueta) REFERENCES Etiquetas(IdEtiqueta),
     FOREIGN KEY (IdDocente) REFERENCES Docentes(IdDocente)
+);
+
+
+DROP TABLE IF EXISTS Comentarios;
+
+CREATE TABLE Comentarios(
+    IdComentario int NOT NULL AUTO_INCREMENT,
+    IdAlumno int NOT NULL,
+    IdPublicacion int NOT NULL,
+    FechaPublicacion date NOT NULL,
+    PRIMARY KEY (IdComentario),
+    FOREIGN KEY (IdAlumno) REFERENCES Alumnos(IdAlumno),
+    FOREIGN KEY (IdPublicacion) REFERENCES Publicaciones(IdPublicacion)
 );
 
