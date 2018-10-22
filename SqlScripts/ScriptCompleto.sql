@@ -38,9 +38,11 @@ DROP TABLE IF EXISTS Etiquetas;
 
 CREATE TABLE Etiquetas(
     IdEtiqueta int NOT NULL AUTO_INCREMENT,
+    IdPublicacion int NOT NULL,
     NombreEtiqueta varchar(40) NOT NULL,
     Descripcion varchar(255) NOT NULL,
-    PRIMARY KEY (IdEtiqueta)
+    PRIMARY KEY (IdEtiqueta),
+    FOREIGN KEY (IdPublicacion) REFERENCES AutPublicacionesores(IdPublicacion)
 );
 
 DROP TABLE IF EXISTS Publicaciones;
@@ -48,18 +50,16 @@ DROP TABLE IF EXISTS Publicaciones;
 CREATE TABLE Publicaciones(
     IdPublicacion int NOT NULL AUTO_INCREMENT,
     IdAutor int NOT NULL,
-    IdEtiqueta int NOT NULL,
     IdDocente int NOT NULL,
     Vistas int NOT NULL,
     Contenido varchar(255) NOT NULL,
     FechaPublicacion date NOT NULL,
     PRIMARY KEY (IdPublicacion),
     FOREIGN KEY (IdAutor) REFERENCES Autores(IdAutor),
-    FOREIGN KEY (IdEtiqueta) REFERENCES Etiquetas(IdEtiqueta),
     FOREIGN KEY (IdDocente) REFERENCES Docentes(IdDocente)
 );
 
---Probrando
+
 DROP TABLE IF EXISTS Comentarios;
 
 CREATE TABLE Comentarios(
