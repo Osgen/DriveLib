@@ -34,17 +34,6 @@ CREATE TABLE Autores (
     PRIMARY KEY (IdAutor)
 );
 
-DROP TABLE IF EXISTS Etiquetas;
-
-CREATE TABLE Etiquetas(
-    IdEtiqueta int NOT NULL AUTO_INCREMENT,
-    IdPublicacion int NOT NULL,
-    NombreEtiqueta varchar(40) NOT NULL,
-    Descripcion varchar(255) NOT NULL,
-    PRIMARY KEY (IdEtiqueta),
-    FOREIGN KEY (IdPublicacion) REFERENCES AutPublicacionesores(IdPublicacion)
-);
-
 DROP TABLE IF EXISTS Publicaciones;
 
 CREATE TABLE Publicaciones(
@@ -59,6 +48,16 @@ CREATE TABLE Publicaciones(
     FOREIGN KEY (IdDocente) REFERENCES Docentes(IdDocente)
 );
 
+DROP TABLE IF EXISTS Etiquetas;
+
+CREATE TABLE Etiquetas(
+    IdEtiqueta int NOT NULL AUTO_INCREMENT,
+    IdPublicacion int NOT NULL,
+    NombreEtiqueta varchar(40) NOT NULL,
+    Descripcion varchar(255) NOT NULL,
+    PRIMARY KEY (IdEtiqueta),
+    FOREIGN KEY (IdPublicacion) REFERENCES AutPublicacionesores(IdPublicacion)
+);
 
 DROP TABLE IF EXISTS Comentarios;
 
