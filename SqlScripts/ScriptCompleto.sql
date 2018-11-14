@@ -60,7 +60,7 @@ CREATE TABLE Etiquetas(
 DROP TABLE IF EXISTS Clasificaciones;
 
 CREATE TABLE Clasificaciones(
-    IdClasificacion int NOT NULL AUTO_INCREMENT;
+    IdClasificacion int NOT NULL AUTO_INCREMENT,
     IdEtiqueta int NOT NULL,
     IdPublicacion int NOT NULL,
     PRIMARY KEY (IdClasificacion),
