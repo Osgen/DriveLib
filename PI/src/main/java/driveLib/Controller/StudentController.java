@@ -1,43 +1,28 @@
 package driveLib.Controller;
 
-import driveLib.Entity.Student;
-import driveLib.Service.StudentService;
+import driveLib.Models.Student;
+import driveLib.Repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-import java.util.Collection;
-
-@RestController
-@RequestMapping("/students")
+@Controller
+@RequestMapping(path = "/students")
 public class StudentController {
-
     @Autowired
-    private StudentService studentService;
-
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<Student> getAllStudents(){
-        return studentService.getAllStudents();
-    }
-
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Student getStudentById(@PathVariable("id") int id){
-        return studentService.getStudentById(id);
-    }
-
-    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-    public void deleteStudentById(@PathVariable("id") int id){
-        studentService.removeStudentById(id);
-    }
-
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void upddateStudent(@RequestBody Student student){
-        studentService.updateStudent(student);
-    }
+    private StudentRepository studentRepository;
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void insertStudent(@RequestBody Student student){
-        studentService.insertStudent(student);
+    public @ResponseBody String addNewStudent(@RequestBody Student student){
+
+
+            studentRepository.save(student);
+            return "Saved";
+    }
+
+    @GetMapping(path = "/all")
+    public @ResponseBody Iterable<Student> getAllStudents(){
+        return studentRepository.findAll();
     }
 }
