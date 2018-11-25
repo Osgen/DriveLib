@@ -15,10 +15,8 @@ public class StudentController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String addNewStudent(@RequestBody Student student){
-
-
-            studentRepository.save(student);
-            return "Saved";
+        studentRepository.save(student);
+        return "Saved";
     }
 
     @GetMapping(path = "/all")
