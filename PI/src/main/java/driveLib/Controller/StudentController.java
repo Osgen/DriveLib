@@ -7,6 +7,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.parser.Entity;
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 @RequestMapping(path = "/students")
 public class StudentController {
@@ -14,13 +18,31 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody String addNewStudent(@RequestBody Student student){
+    public @ResponseBody Student addNewStudent(@RequestBody Student student){
         studentRepository.save(student);
-        return "Saved";
+        return student;
     }
 
-    @GetMapping(path = "/all")
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody Iterable<Student> getAllStudents(){
         return studentRepository.findAll();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Optional<Student> getStudentById(@PathVariable("id") int id){
+        return studentRepository.findById(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public  @ResponseBody String deleteStudentById(@PathVariable("id") int id){
+        studentRepository.deleteById(id);
+        return "Alumno eliminado";
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Student updateStudent(@RequestBody Student student){
+        studentRepository.save(student);
+        return student;
     }
 }
