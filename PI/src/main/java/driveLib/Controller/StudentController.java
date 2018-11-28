@@ -37,7 +37,7 @@ public class StudentController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public  @ResponseBody String deleteStudentById(@PathVariable("id") int id){
         studentRepository.deleteById(id);
-        return "Alumno eliminado";
+        return "Alumno con id: " +id+" eliminado";
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

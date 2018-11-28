@@ -6,13 +6,12 @@ import driveLib.Repositories.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
-@RequestMapping("/tag")
+@RequestMapping("/tags")
 public class TagController {
 
     @Autowired
@@ -24,8 +23,25 @@ public class TagController {
         return "saved";
     }
 
-    @RequestMapping("/all")
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody Iterable<Tag> getAllTags(){
         return tagRepository.findAll();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Tag> getTagById(@PathVariable("id") int id){
+        return tagRepository.findById(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody String deleteTagById(@PathVariable("id") int id){
+        tagRepository.deleteById(id);
+        return "Tag con id: "+id+" eliminada";
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Tag updateTagById(@RequestBody Tag tag){
+        tagRepository.save(tag);
+        return tag;
     }
 }
